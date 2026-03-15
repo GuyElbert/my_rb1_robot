@@ -20,50 +20,110 @@
 
     <!-- Joint connecting base_link and base_footprint -->
     <!-- TO DO: Set correct joint type -->
-    <joint name="base_link_plate_joint" type="">
+    <joint name="base_link_plate_joint" type="fixed">
         <!-- TO DO: Define axis (if needed) -->
         <!-- TO DO: Define origin -->
+        <origin rpy="0 0 0" xyz="0 0 -0.15" />
         <!-- TO DO: Define parent -->
+        <parent link="base_link" />
         <!-- TO DO: Define child -->
+        <child link="base_footprint" />
     </joint>
 
     <!-- Base link -->
     <link name="base_link">
         <!-- TO DO: Add visual tag -->
+        <visual>
+            <geometry>
+                <cylinder radius=".25" length=".3" />
+            </geometry>
+        </visual>
         <!-- TO DO: Add collision tag -->
+        <collision>
+            <geometry>
+                <cylinder radius=".25" length=".3" />
+            </geometry>
+        </collision>
         <!-- TO DO: Add inertial tag -->
+        <inertial>
+            <mass value="20" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx=".4625" ixy="0" ixz="0" iyy=".4625" iyz="0" izz=".625" />
+        </inertial>
     </link>
 
     <!-- Left wheel link -->
     <link name="left_wheel">
         <!-- TO DO: Add visual tag -->
+        <visual>
+            <origin rpy="1.5707 0 0" xyz="0 0 0" />
+            <geometry>
+                <cylinder radius=".025" length=".03" />
+            </geometry>
+        </visual>
         <!-- TO DO: Add collision tag -->
+        <collision>
+            <origin rpy="1.5707 0 0" xyz="0 0 0" />
+            <geometry>
+                <cylinder radius=".025" length=".03" />
+            </geometry>
+        </collision>
         <!-- TO DO: Add inertial tag -->
+        <inertial>
+            <mass value="1.25" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="0.00029" ixy="0" ixz="0" iyy="0.00029" iyz="0" izz="0.00039" />
+        </inertial>
     </link>
 
     <!-- Joint connecting base_link and left_wheel -->
     <!-- TO DO: Set correct joint type -->
-    <joint name="base_link_left_wheel_joint" type="">
+    <joint name="base_link_left_wheel_joint" type="continuous">
         <!-- TO DO: Define axis (if needed) -->
+        <axis rpy="0 0 0" xyz="0 1 0" />
         <!-- TO DO: Define origin -->
+        <origin rpy="0 0 0" xyz="0.0 -0.2 -0.15" />
         <!-- TO DO: Define parent -->
+        <parent link="base_link" />
         <!-- TO DO: Define child -->
+        <child link ="left_wheel" />
     </joint>
 
     <!-- Right wheel link -->
     <link name="right_wheel">
         <!-- TO DO: Add visual tag -->
+        <visual>
+            <origin rpy="1.5707 0 0" xyz="0 0 0" />
+            <geometry>
+                <cylinder radius=".025" length=".03" />
+            </geometry>
+        </visual>
         <!-- TO DO: Add collision tag -->
+        <collision>
+            <origin rpy="1.5707 0 0" xyz="0 0 0" />
+            <geometry>
+                <cylinder radius=".25" length=".3" />
+            </geometry>
+        </collision>
         <!-- TO DO: Add inertial tag -->
+        <inertial>
+            <mass value="1.25" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="0.00029" ixy="0" ixz="0" iyy="0.00029" iyz="0" izz="0.00039" />
+        </inertial>
     </link>
 
     <!-- Joint connecting base_link and right_wheel -->
     <!-- TO DO: Set correct joint type -->
-    <joint name="base_link_right_wheel_joint" type="">
+    <joint name="base_link_right_wheel_joint" type="continuous">
         <!-- TO DO: Define axis (if needed) -->
+        <axis rpy="0 0 0" xyz="0 1 0" />
         <!-- TO DO: Define origin -->
+        <origin rpy="0 0 0" xyz="0.0 0.2 -0.15" />
         <!-- TO DO: Define parent -->
+        <parent link="base_link" />
         <!-- TO DO: Define child -->
+        <child link ="right_wheel" />
     </joint>
 
     <!-- Front caster -->
@@ -75,7 +135,7 @@
 
     <!-- Joint connecting base_link and front_caster -->
     <!-- TO DO: Set correct joint type -->
-    <joint name="base_link_front_caster_joint" type="">
+    <joint name="base_link_front_caster_joint" type="continuous">
         <!-- TO DO: Define axis (if needed) -->
         <!-- TO DO: Define origin -->
         <!-- TO DO: Define parent -->
@@ -91,7 +151,7 @@
 
     <!-- Joint connecting base_link and back_caster -->
     <!-- TO DO: Set correct joint type -->
-    <joint name="base_link_back_caster_joint" type="">
+    <joint name="base_link_back_caster_joint" type="continuous">
         <!-- TO DO: Define axis (if needed) -->
         <!-- TO DO: Define origin -->
         <!-- TO DO: Define parent -->
@@ -105,7 +165,7 @@
 
     <!-- Joint connecting base_link and front_laser -->
     <!-- TO DO: Set correct joint type -->
-    <joint name="base_link_front_laser_joint" type="">
+    <joint name="base_link_front_laser_joint" type="fixed">
         <!-- TO DO: Define axis (if needed) -->
         <!-- TO DO: Define origin -->
         <!-- TO DO: Define parent -->
