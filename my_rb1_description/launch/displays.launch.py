@@ -3,7 +3,6 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.substitutions import Command
 from launch_ros.actions import Node
-from launch_ros.parameter_descriptions import ParameterValue
 
 # ROS2 Launch System will look for this function definition #
 def generate_launch_description():
@@ -17,12 +16,15 @@ def generate_launch_description():
     robot_desc_path = os.path.join(package_directory, "urdf", urdf_file)
     print("URDF Loaded !")
 
-    # Load Joint State Publisher #
-    joint_state_publisher_gui_node = Node(
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
-        name='joint_state_publisher_gui',
-        output='screen'
+    # Robot State Publisher (RSP) #
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher_node',
+        output="screen",
+        emulate_tty=True,
+        parameters=[{'use_sim_time': True, 
+                     'my_rb1_description': Command(['xacro ', robot_desc_path])}]
     )
 
     # Load RViz Configuration File #
@@ -41,29 +43,10 @@ def generate_launch_description():
         arguments=['-d', rviz_config_path],
     )
 
-    # Robot State Publisher (RSP) #
-    robot_state_publisher_node = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        name='robot_state_publisher',
-        output='screen',
-        emulate_tty=True,
-        parameters=[{
-            'use_sim_time': True,
-            # Ensure xacro output is treated as a string parameter
-            'robot_description': ParameterValue(Command(['xacro ', robot_desc_path]), value_type=str),
-        }],
-    )
-
-
     # Create and Return the Launch Description Object #
     return LaunchDescription(
         [
-            # Sets use_sim_time for all nodes started below (doesn't work for nodes started from gazebo) #
-            
-            joint_state_publisher_gui_node,
             robot_state_publisher_node,
             rviz_node,
-            
         ]
     )

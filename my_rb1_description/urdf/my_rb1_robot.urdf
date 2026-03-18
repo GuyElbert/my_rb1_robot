@@ -141,7 +141,7 @@
             <geometry>
                 <sphere radius=".025" />
             </geometry>
-        <collision>
+        </collision>
         <!-- TO DO: Add inertial tag -->
         <inertial>
             <mass value="1.25" />
@@ -156,7 +156,7 @@
         <!-- TO DO: Define axis (if needed) -->
         <axis rpy="1 1 1" xyz="1 1 0" />
         <!-- TO DO: Define origin -->
-        <origin rpy="0 0 0" xyz="-0.1 0.0 -0.15" />
+        <origin rpy="0 0 0" xyz="0.1 0.0 -0.15" />
         <!-- TO DO: Define parent -->
         <parent link="base_link" />
         <!-- TO DO: Define child -->
@@ -179,7 +179,7 @@
             <geometry>
                 <sphere radius=".025" />
             </geometry>
-        <collision>
+        </collision>
         <!-- TO DO: Add inertial tag -->
         <inertial>
             <mass value="1.25" />
@@ -198,7 +198,7 @@
         <!-- TO DO: Define parent -->
         <parent link="base_link" />
         <!-- TO DO: Define child -->
-        <child link ="front_caster" />
+        <child link ="back_caster" />
         <joint_properties friction="0.0" />
     </joint>
 
